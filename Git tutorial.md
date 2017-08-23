@@ -36,4 +36,11 @@
 
    注：如果是直接从GitHub上clone下来的，那么修改后直接**git push origin master**即可。
 
-5. ​
+5. 修改回撤
+
+   常用操作已经用红圈圈出，注意git reset --soft我自己认为还不如直接用--hard。因为一般而言git commit后修改区域和暂存区域都是空的。
+
+   ​
+
+   ![](git-flow.png)
+
