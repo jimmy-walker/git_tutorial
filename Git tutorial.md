@@ -40,7 +40,38 @@
 
    常用操作已经用红圈圈出，注意git reset --soft我自己认为还不如直接用--hard。因为一般而言git commit后修改区域和暂存区域都是空的。
 
-   ​
+   `--` 的名称叫做double dash，是bash的内置命令，用来标记可选命令选项的结束。即在它后面的带 `--` 的字符串，不被当做是一个命令选项。
+
+   > More precisely, a double dash (--) is used in bash built-in commands and many other commands to signify the end of command options, after which only positional parameters are accepted.
+
+   举例：在 grep 命令中 `-V` 原本是一个可选的命令参数(options)，打印出 grep 命令的版本。
+
+   但结合`--`后，以下命令表示在 d1.txt 文件中查找 "-V" 字符串`grep -- -V d1.txt`
+
+   Git 的一些命令中，借鉴了这种用法。使用 `--` 去隔离开“树”与“路径”。
+
+   例如，你想还原 一个文件 `path/to/file.txt`，在Git中使用如下命令
+
+   `git checkout path/to/file.txt`
+
+   但是天杀的居然有一个文件名字就叫做 "master"如果你套用上面的命令，想还原“master”文件
+
+   `git checkout master`
+
+   最终起的效果是变成切换到了master分支上。
+
+   正确的做法是使用 `--`，这样它后面的字符串不会当做“树”，而认为是文件路径。
+
+   `git checkout -- master`
 
    ![](git-flow.png)
+
+6. 删除文件
+
+
+   其实这里的删除文件是上图中修改的一个例子而已。
+
+   还是用上述方法添加到暂存区或是放弃修改，只不过除了add之外，还可以用**git rm**
+
+   `git checkout`其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 
