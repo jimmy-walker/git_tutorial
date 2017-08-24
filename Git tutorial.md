@@ -147,23 +147,23 @@
 
    1）merge时发生冲突，会有提示：
 
-   ![conflict on the same file](C:\Users\Jimmy\Desktop\git_tutorial\picture\conflict on the same file.PNG)
+   ![conflict on the same file](picture/conflict on the same file.PNG)
 
    2）此时无法切换到其他分支，会有提示：
 
-   ![cannot checkout branch](C:\Users\Jimmy\Desktop\git_tutorial\picture\cannot checkout branch.PNG)
+   ![cannot checkout branch](picture/cannot checkout branch.PNG)
 
    3）查看status，会告诉我们哪里冲突了（在合并前git status实际上是无提示的）：
 
-   ![after conflict's status](C:\Users\Jimmy\Desktop\git_tutorial\picture\after conflict's status.PNG)
+   ![after conflict's status](picture/after conflict's status.PNG)
 
    4）打开文件进行修改：
 
-   ![conflict](C:\Users\Jimmy\Desktop\git_tutorial\picture\conflict.PNG)
+   ![conflict](picture/conflict.PNG)
 
    5）修改后将文件commit -am，此时git status就会提示消失：
 
-   ![after commit -am](C:\Users\Jimmy\Desktop\git_tutorial\picture\after commit -am.PNG)
+   ![after commit -am](picture/after commit -am.PNG)
 
    ​
 
@@ -171,15 +171,15 @@
 
    注意其中分支切换时会用绿色提示（只要记得是次级的那两个合并在了一起即可）。
 
-   ![fixed conflict's status](C:\Users\Jimmy\Desktop\git_tutorial\picture\fixed conflict's status.PNG)
+   ![fixed conflict's status](picture/fixed conflict's status.PNG)
 
    对应此图（但是不要去想着让上下两图的边对应，暂时无法做到这样理解）：
 
-   ![branch merge](C:\Users\Jimmy\Desktop\git_tutorial\picture\branch merge.png)
+   ![branch merge](picture/branch merge.png)
 
    下图是在冲突前的状态，便于理解。
 
-   ![master's log](C:\Users\Jimmy\Desktop\git_tutorial\picture\master's log.PNG)
+   ![master's log](picture/master's log.PNG)
 
    7）再删除其他分支即可：git branch -d test
 
