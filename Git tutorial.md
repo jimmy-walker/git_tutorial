@@ -30,7 +30,7 @@
 
   第二步，使用命令**git commit -m "xxx"**，完成。实际上就是把暂存区的所有内容提交到当前分支。
 
-  ![](picture/Working Directory and Repository.jpg)
+  ![](picture/Working-Directory-and-Repository.jpg)
 
   ​
 
@@ -80,7 +80,7 @@
 
    重要概念：**当修改与暂存区都无东西时，工作区与本地库相等。**如果有一个东西，那么说明两者不相等。而如果commit了a文件和b文件，想保留新的a文件和上一版本的b文件，那用**git reset HEAD^ b**把上一版本中的b文件重新放入缓存区以及修改处。**此时工作区和本地库相等都是HEAD版本，所以需要checkout和commit同时修改工作区和本地库**。
 
-   ![](picture/git reset HEAD^ file.png)
+   ![](picture/git-reset-HEAD^-file.png)
 
    ​
 
@@ -147,15 +147,15 @@
 
    1）merge时发生冲突，会有提示：
 
-   ![conflict on the same file](picture/conflict on the same file.PNG)
+   ![conflict on the same file](picture/conflict-on-the-same-file.PNG)
 
    2）此时无法切换到其他分支，会有提示：
 
-   ![cannot checkout branch](picture/cannot checkout branch.PNG)
+   ![cannot checkout branch](picture/cannot-checkout-branch.PNG)
 
    3）查看status，会告诉我们哪里冲突了（在合并前git status实际上是无提示的）：
 
-   ![after conflict's status](picture/after conflict's status.PNG)
+   ![after conflict's status](picture/after-conflict's-status.PNG)
 
    4）打开文件进行修改：
 
@@ -163,7 +163,7 @@
 
    5）修改后将文件commit -am，此时git status就会提示消失：
 
-   ![after commit -am](picture/after commit -am.PNG)
+   ![after commit -am](picture/after-commit--am.PNG)
 
    ​
 
@@ -171,15 +171,15 @@
 
    注意其中分支切换时会用绿色提示（只要记得是次级的那两个合并在了一起即可）。
 
-   ![fixed conflict's status](picture/fixed conflict's status.PNG)
+   ![fixed conflict's status](picture/fixed-conflict's-status.PNG)
 
    对应此图（但是不要去想着让上下两图的边对应，暂时无法做到这样理解）：
 
-   ![branch merge](picture/branch merge.png)
+   ![branch merge](picture/branch-merge.png)
 
    下图是在冲突前的状态，便于理解。
 
-   ![master's log](picture/master's log.PNG)
+   ![master's log](picture/master's-log.PNG)
 
    7）再删除其他分支即可：git branch -d test
 
@@ -199,4 +199,4 @@
 
   ​	如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
 
-![](picture/github fork.png)
+![](picture/github-fork.png)
