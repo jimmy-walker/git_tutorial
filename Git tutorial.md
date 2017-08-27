@@ -185,18 +185,22 @@
 
    ​
 
-10. 参与GitHub项目
+10. 分支管理策略
 
-  第一步：登录GitHub的项目主页，Fork克隆一个仓库：
+  ​
 
-  ​	比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone。
+11. 参与GitHub项目
 
-  第二步：对git clone到本地的仓库进行更改：
+   第一步：登录GitHub的项目主页，Fork克隆一个仓库：
 
-  ​	Bootstrap的官方仓库`twbs/bootstrap`、你在GitHub上克隆的仓库`my/bootstrap`，以及你自己克隆到本地电脑的仓库，他们的关系就像下图显示的那样。
+   ​	比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone。
 
-  第三步：pull request：
+   第二步：对git clone到本地的仓库进行更改：
 
-  ​	如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
+   ​	Bootstrap的官方仓库`twbs/bootstrap`、你在GitHub上克隆的仓库`my/bootstrap`，以及你自己克隆到本地电脑的仓库，他们的关系就像下图显示的那样。
+
+   第三步：pull request：
+
+   ​	如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
 
 ![](picture/github-fork.png)
