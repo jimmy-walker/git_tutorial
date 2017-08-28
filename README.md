@@ -1,13 +1,12 @@
-### Git tutorial
+# Git tutorial
 
-0. 安装后配置
+##0. 安装后配置
 
-      **git config --global user.name "你的名字"** 
-      **git config --global user.email "你的邮件地址"** 
+      git config --global user.name "你的名字"
+      git config --global user.email "你的邮件地址" 
 
-      ​
 
-1. 在本机生成key，github添加ssh key，官方有文档
+##1. 在本机生成key，github添加ssh key，官方有文档
 
    第一步，创建SSH Key。在用户主目录下，看看有没有.ssh目录(C:\Users\jimmylian\.ssh)，如果有，再看看这个目录下有没有`id_rsa`和`id_rsa.pub`这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
    `ssh-keygen -t rsa -C "你的邮件地址"`
@@ -16,11 +15,11 @@
 
    ​
 
-2. 初始化一个Git仓库，使用git init命令。
+##2. 初始化一个Git仓库，使用git init命令。
 
    ​
 
-3. 添加文件到Git仓库，分两步：
+##3. 添加文件到Git仓库，分两步：
 
   第一步，使用命令**git add \<file>**，注意，可反复多次使用，添加多个文件。就是把文件修改添加到暂存区（stage）。
 
@@ -34,7 +33,7 @@
 
   ​
 
-4. 在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步
+##4. 在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步
 
    第一步，在本地仓库下执行：**git remote add origin [git@github.com:jimmy-walker/git_tutorial.git](git@github.com:jimmy-walker/git_tutorial.git) ** ，远程库的名字就是origin，所以代表从远程得到origin库。
 
@@ -44,7 +43,7 @@
 
    ​
 
-5. 修改回撤
+##5. 修改回撤
 
    常用操作已经用红圈圈出，注意git reset --soft我自己认为还不如直接用--hard。因为一般而言git commit后修改区域和暂存区域都是空的。
 
@@ -76,7 +75,7 @@
 
    ​
 
-6. 部分修改
+##6. 部分修改
 
    重要概念：**当修改与暂存区都无东西时，工作区与本地库相等。**如果有一个东西，那么说明两者不相等。而如果commit了a文件和b文件，想保留新的a文件和上一版本的b文件，那用**git reset HEAD^ b**把上一版本中的b文件重新放入缓存区以及修改处。**此时工作区和本地库相等都是HEAD版本，所以需要checkout和commit同时修改工作区和本地库**。
 
@@ -84,7 +83,7 @@
 
    ​
 
-7. 删除文件
+##7. 删除文件
 
 
    其实这里的删除文件是上图中修改的一个例子而已。
@@ -95,7 +94,7 @@
 
 
 
-8. 分支管理：<u>分支是指向提交的指针，对应了一条线</u>
+##8. 分支管理：<u>分支是指向提交的指针，对应了一条线</u>
 
    **Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 `master`。但是考虑从初始点到指针指向的提交点，可以认为分支对应一条线（时间线）。**
 
@@ -117,7 +116,7 @@
 
    ​
 
-9. 解决分支冲突：**如果在一个文件上两个分支都有操作，就会有分支冲突**。
+##9. 解决分支冲突：**如果在一个文件上两个分支都有操作，就会有分支冲突**。
 
    第一步：**大致流程，创建分支dev，修改后commit，回到master分支，修改后commit，然后merge合并**。
 
@@ -129,63 +128,52 @@
 
    ​	这个提交的操作就相当于你默认要提交的这个版本就是无冲突的合并版本。 实际上就是人肉修改冲突文件：打开需要合并的文件，找到冲突内容，选择一个版本保留，然后提交你选择后的结果。既然说是选择，所以你甚至可以选择什么冲突都不修改的提交。只不过文件中的冲突内容会很突兀的在那里杵着，就像这样：
 
-   ```
-   <<<<<<< HEAD
-   xxxxxxxWWWWWWLLLLLLLL   # 这是来自当前分支的修改
-   =======
-   xxxxxxxaAAAAAAA            # 这是来自feature1分支的修改
-   >>>>>>> feature1
-   ```
-
-   ​	而不是整合好冲突后干干净净的样子：
-
-   ```
-   xxxxxxxaAAAAAAA      # 这是我选择留下的修改
-   ```
+   ![](picture/merge-conflict.png)
 
    第四步：具体例子：
 
    1）merge时发生冲突，会有提示：
 
-   ![conflict on the same file](picture/conflict-on-the-same-file.PNG)
 
-   2）此时无法切换到其他分支，会有提示：
+   ![](picture/conflict-on-the-same-file.PNG)
+
+​	2）此时无法切换到其他分支，会有提示：
 
    ![cannot checkout branch](picture/cannot-checkout-branch.PNG)
 
-   3）查看status，会告诉我们哪里冲突了（在合并前git status实际上是无提示的）：
+   	3）查看status，会告诉我们哪里冲突了（在合并前git status实际上是无提示的）：
 
    ![after conflict's status](picture/after-conflict's-status.PNG)
 
-   4）打开文件进行修改：
+   	4）打开文件进行修改：
 
    ![conflict](picture/conflict.PNG)
 
-   5）修改后将文件commit -am，此时git status就会提示消失：
+   	5）修改后将文件commit -am，此时git status就会提示消失：
 
    ![after commit -am](picture/after-commit--am.PNG)
 
    ​
 
-   6）此时使用命令查看会发现分支合并了：git log --graph --pretty=oneline --abbrev-commit
+   	6）此时使用命令查看会发现分支合并了：git log --graph --pretty=oneline --abbrev-commit
 
-   注意其中分支切换时会用绿色提示（只要记得是次级的那两个合并在了一起即可）。
+   		注意其中分支切换时会用绿色提示（只要记得是次级的那两个合并在了一起即可）。
 
    ![fixed conflict's status](picture/fixed-conflict's-status.PNG)
 
-   对应此图（但是不要去想着让上下两图的边对应，暂时无法做到这样理解）：
+   		对应此图（但是不要去想着让上下两图的边对应，暂时无法做到这样理解）：
 
    ![branch merge](picture/branch-merge.png)
 
-   下图是在冲突前的状态，便于理解。
+   		下图是在冲突前的状态，便于理解。
 
    ![master's log](picture/master's-log.PNG)
 
-   7）再删除其他分支即可：git branch -d test
+​	7）再删除其他分支即可：git branch -d test
 
    ​
 
-10. 分支基础知识
+##10. 分支基础知识
 
   Git提供Remote-tracking branches。远程跟踪分支是远程分支状态的引用。 **它们是你不能移动的本地引用，当你做任何网络通信操作时，它们会自动移动。 J其实提示的ahead of等信息就是根据这个来推算的。**只要你不与 origin 服务器连接，你的 `origin/master` 指针就不会移动。
 
@@ -205,7 +193,7 @@
 
   ​
 
-11. 分支管理策略
+##11. 分支管理策略
 
    第一种情况：对dev分支更新不同的文件。
 
@@ -254,11 +242,11 @@
 
    ​
 
-12. pull and push
+##12. pull and push
 
    **分支推送顺序的写法是<来源地>:<目的地>**，所以`git pull`是<远程分支>:<本地分支>，而`git push`是<本地分支>:<远程分支>。
 
-   ​
+   
 
    第一步：`git pull`命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。它的完整格式稍稍有点复杂。
 
@@ -298,17 +286,20 @@
 
    2）删除：如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
 
-   > ```
-   > $ git push origin :master
-   > # 等同于
-   > $ git push origin --delete master
-   > ```
+   git push origin :dev 等同于git push origin --delete dev
 
-   上面命令表示删除`origin`主机的`master`分支。
+   上面命令表示删除`origin`主机的`dev`分支。
+
+   如果远程主机删除了某个分支，默认情况下，`git pull` 不会在拉取远程分支的时候，删除对应的本地分支。这是为了防止，由于其他人操作了远程主机，导致`git pull`不知不觉删除了本地分支。
+
+   但是，你可以改变这个行为，加上参数 `-p` 就会在本地删除远程已经删除的分支。
+
+   ```git fetch -p```
 
    ​
 
-13. 多人协作
+
+##13. 多人协作
 
    第一步：首先，可以试图用`git push origin branch-name`推送自己的修改；
 
@@ -322,7 +313,7 @@
 
    ​
 
-14. 参与GitHub项目
+##14. 参与GitHub项目
 
    第一步：登录GitHub的项目主页，Fork克隆一个仓库：
 
@@ -337,3 +328,21 @@
    ​	如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
 
 ![](picture/github-fork.png)
+
+## 15.发布到Gitbook
+
+第一步：修改GitHub代码，增加Gitbook必要的README.md和SUMMARY.md文件。
+
+![](picture/gitbook.png)
+
+其中文本内容放入README.md中，而SUMMARY.md文件作为目录文件：
+
+![](picture/summary.png)
+
+第二步：进入Gitbook中绑定GitHub。进入GitHub选项卡，点击保存，点击sync，通过update可以看到状态。
+
+![](picture/save-github.PNG)
+
+![](picture/sync-github.PNG)
+
+![](picture/update.PNG)
