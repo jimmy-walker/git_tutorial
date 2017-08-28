@@ -131,7 +131,7 @@
 
   远程跟踪分支像是你上次连接到远程仓库时，那些分支所处状态的书签。当git clone后，Git 的 `clone` 命令会为你自动将其命名为 `origin`，拉取它的所有数据，创建一个指向它的 `master` 分支的指针，并且在本地将其命名为 `origin/master`。 Git 也会给你一个与 origin 的 `master` 分支在指向同一个地方的本地 `master` 分支，这样你就有工作的基础。绿色的分支是本地分支。红色的分支就是远程跟踪分支Remote-tracking branches。 J本地master上的*就等于那个HEAD分支的作用。
 
-  ![](picture/original-clone-branch.png)
+  ![](picture/original-clone-branch.PNG)
 
   **Git默认只显示master分支的数据，还需要手动切换到我们需要的分支并显示出来。**
   ```git checkout -b dev origin/dev```
