@@ -21,8 +21,8 @@
   如果对文件夹内有几处操作，可以对文件夹add从而减少次数。
 
   第二步，使用命令**git commit -m "xxx"**，完成。实际上就是把暂存区的所有内容提交到当前分支。
-  
-  ![](picture/Working-Directory-and-Repository.JPG)
+
+  ![](picture/Working-Directory-and-Repository.jpg)
 
 ##4. 在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步
 
@@ -46,14 +46,14 @@
   最终起的效果是变成切换到了master分支上。
   正确的做法是使用 `--`，这样它后面的字符串不会当做“树”，而认为是文件路径。
   `git checkout -- master`
-  
-  ![](picture/git-flow.PNG)
+
+  ![](picture/git-flow.png)
 
 ##6. 部分修改
 
   重要概念：**当修改与暂存区都无东西时，工作区与本地库相等。**如果有一个东西，那么说明两者不相等。而如果commit了a文件和b文件，想保留新的a文件和上一版本的b文件，那用**git reset HEAD^ b**把上一版本中的b文件重新放入缓存区以及修改处。**此时工作区和本地库相等都是HEAD版本，所以需要checkout和commit同时修改工作区和本地库**。
-  
-  ![](picture/git-reset-HEAD^-file.PNG)
+
+  ![](picture/git-reset-HEAD^-file.png)
 
 ##7. 删除文件
 
@@ -82,60 +82,60 @@
 
   第三步：若冲突发生则手动整合冲突（如删除掉某一分支的修改）然后保存，再提交。
   这个提交的操作就相当于你默认要提交的这个版本就是无冲突的合并版本。 实际上就是人肉修改冲突文件：打开需要合并的文件，找到冲突内容，选择一个版本保留，然后提交你选择后的结果。既然说是选择，所以你甚至可以选择什么冲突都不修改的提交。只不过文件中的冲突内容会很突兀的在那里杵着，就像这样：
-  
+
   ![](picture/merge-conflict.PNG)
 
   第四步：具体例子：
   1）merge时发生冲突，会有提示：
-  
+
   ![](picture/conflict-on-the-same-file.PNG)
-  
+
   2）此时无法切换到其他分支，会有提示：
-  
+
   ![cannot checkout branch](picture/cannot-checkout-branch.PNG)
-  
+
   3）查看status，会告诉我们哪里冲突了（在合并前git status实际上是无提示的）：
-  
+
   ![after conflict's status](picture/after-conflict's-status.PNG)
-  
+
   4）打开文件进行修改：
-  
+
   ![conflict](picture/conflict.PNG)
-  
+
   5）修改后将文件commit -am，此时git status就会提示消失：
-  
+
   ![after commit -am](picture/after-commit--am.PNG)
-  
+
   6）此时使用命令查看会发现分支合并了：git log --graph --pretty=oneline --abbrev-commit
   注意其中分支切换时会用绿色提示（只要记得是次级的那两个合并在了一起即可）。
-  
+
   ![fixed conflict's status](picture/fixed-conflict's-status.PNG)
-  
+
   对应此图（但是不要去想着让上下两图的边对应，暂时无法做到这样理解）：
-  
-  ![branch merge](picture/branch-merge.PNG)
-  
+
+  ![branch merge](picture/branch-merge.png)
+
   下图是在冲突前的状态，便于理解。
-  
+
   ![master's log](picture/master's-log.PNG)
-  
+
   7）再删除其他分支即可：git branch -d test
 
 ##10. 分支基础知识
 
   Git提供Remote-tracking branches。远程跟踪分支是远程分支状态的引用。 **它们是你不能移动的本地引用，当你做任何网络通信操作时，它们会自动移动。 J其实提示的ahead of等信息就是根据这个来推算的。**只要你不与 origin 服务器连接，你的 `origin/master` 指针就不会移动。
-  
-  ![](picture/remote-branches-1.PNG)
-  
-  ![](picture/remote-branches-2.PNG)
-  
+
+  ![](picture/remote-branches-1.png)
+
+  ![](picture/remote-branches-2.png)
+
   远程跟踪分支像是你上次连接到远程仓库时，那些分支所处状态的书签。当git clone后，Git 的 `clone` 命令会为你自动将其命名为 `origin`，拉取它的所有数据，创建一个指向它的 `master` 分支的指针，并且在本地将其命名为 `origin/master`。 Git 也会给你一个与 origin 的 `master` 分支在指向同一个地方的本地 `master` 分支，这样你就有工作的基础。绿色的分支是本地分支。红色的分支就是远程跟踪分支Remote-tracking branches。 J本地master上的*就等于那个HEAD分支的作用。
-  
+
   ![](picture/original-clone-branch.png)
-  
+
   **Git默认只显示master分支的数据，还需要手动切换到我们需要的分支并显示出来。**
   ```git checkout -b dev origin/dev```
-  
+
   ![](picture/checkout-dev-branch.PNG)
 
 ##11. 分支管理策略
@@ -144,9 +144,9 @@
 
   第一步：运行 git fetch origin 命令。 这个命令查找 “origin” 是哪一个服务器，从中抓取本地没有的数据，并且更新本地数据库，移动 origin/master 指针指向新的、更新后的位置。
   **<u>J如果没有更新，那就不会显示，那么我们就不用管了，就说明没有更新。</u>**
-  
+
   ![](picture/git-fetch-result.PNG)
-  
+
   1）git fetch命令
   git fetch <远程主机名>
   上面命令将某个远程主机的更新，全部取回本地。
@@ -216,24 +216,23 @@
 
   第三步：pull request：
   如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
-  
-  ![](picture/github-fork.PNG)
+
+  ![](picture/github-fork.png)
 
 ## 15.发布到Gitbook
 
   第一步：修改GitHub代码，增加Gitbook必要的README.md和SUMMARY.md文件。
-  
+
   ![](picture/gitbook.PNG)
-  
+
   其中文本内容放入README.md中，而SUMMARY.md文件作为目录文件：
-  
+
   ![](picture/summary.PNG)
 
   第二步：进入Gitbook中绑定GitHub。进入GitHub选项卡，点击保存，点击sync，通过update可以看到状态。
-  
+
   ![](picture/save-github.PNG)
-  
+
   ![](picture/sync-github.PNG)
-  
+
   ![](picture/update.PNG)
-  
