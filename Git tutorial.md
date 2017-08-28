@@ -185,11 +185,137 @@
 
    ​
 
-10. 分支管理策略
+10. 分支基础知识
+
+  Git提供Remote-tracking branches。远程跟踪分支是远程分支状态的引用。 **它们是你不能移动的本地引用，当你做任何网络通信操作时，它们会自动移动。 J其实提示的ahead of等信息就是根据这个来推算的。**只要你不与 origin 服务器连接，你的 `origin/master` 指针就不会移动。
+
+  ![](picture/remote-branches-1.png)
+
+  ![](picture/remote-branches-2.png)
+
+  远程跟踪分支像是你上次连接到远程仓库时，那些分支所处状态的书签。当git clone后，Git 的 `clone` 命令会为你自动将其命名为 `origin`，拉取它的所有数据，创建一个指向它的 `master` 分支的指针，并且在本地将其命名为 `origin/master`。 Git 也会给你一个与 origin 的 `master` 分支在指向同一个地方的本地 `master` 分支，这样你就有工作的基础。绿色的分支是本地分支。红色的分支就是远程跟踪分支Remote-tracking branches。 J本地master上的*就等于那个HEAD分支的作用。
+
+  ![](picture/original-clone-branch.png)
+
+  **Git默认只显示master分支的数据，还需要手动切换到我们需要的分支并显示出来。**
+
+  ```git checkout -b dev origin/dev```
+
+  ![](picture/checkout-dev-branch.PNG)
 
   ​
 
-11. 参与GitHub项目
+11. 分支管理策略
+
+   第一种情况：对dev分支更新不同的文件。
+
+   第一步：运行 git fetch origin 命令。 这个命令查找 “origin” 是哪一个服务器，从中抓取本地没有的数据，并且更新本地数据库，移动 origin/master 指针指向新的、更新后的位置。
+
+   **<u>J如果没有更新，那就不会显示，那么我们就不用管了，就说明没有更新。</u>**
+
+   ![](picture/git-fetch-result.png)
+
+   1）git fetch命令
+
+   git fetch <远程主机名>
+
+   上面命令将某个远程主机的更新，全部取回本地。
+
+   git fetch <远程主机名> <分支名>
+
+   上面的命令取回特定分支的更新。
+
+   所取回的更新，在本地主机上要用"远程主机名/分支名"的形式读取。比如origin主机的master，就要用origin/master读取。
+
+   取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。
+
+   git checkout -b dev origin/dev
+
+   2）或者直接使用**git fetch origin master:temp** 
+
+   这句命令的意思是：从远程的origin仓库的master分支下载到本地并新建一个分支temp
+
+   ​
+
+   第二步：查看origin/dev与当前dev区别，如果没有区别，就不会显示。查**看对比，上下移动，q键退出。**
+
+   **git diff origin/dev**
+   ​
+
+   第三步：git merge temp，解决冲突后合并。
+
+   **<u>J如果发生冲突要么重新clone，要么就解决冲突，再merge。如果是merge的话，最后查看git status，看是否需要git push。</u>**
+
+   ​
+
+   第二种情况：合并dev与master分支
+
+   其实该情况与上述类似，因为master分支一直不动，所以origin/master必然相同，可以先查看与origin/master的dif。f那么就本地merge下dev即可，再push。
+
+   ​
+
+12. pull and push
+
+   **分支推送顺序的写法是<来源地>:<目的地>**，所以`git pull`是<远程分支>:<本地分支>，而`git push`是<本地分支>:<远程分支>。
+
+   ​
+
+   第一步：`git pull`命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。它的完整格式稍稍有点复杂。
+
+   ```git pull <远程主机名> <远程分支名>:<本地分支名>```
+
+   如果远程分支是与当前分支合并，则冒号后面的部分可以省略。
+
+   ```git pull <远程主机名> <远程分支名>```
+
+   **J这等同于先做`git fetch`，再做`git merge`**
+
+   如果当前分支与远程分支存在追踪关系，`git pull`就可以省略远程分支名。**J这就是我平时经常这么做的**
+
+   ```git pull origin```
+
+   ​
+
+   第二步：`git push`命令用于将本地分支的更新，推送到远程主机。它的格式与`git pull`命令相仿。
+
+   ```git push <远程主机名> <本地分支名>:<远程分支名>```
+
+   如果省略远程分支名，则表示将本地分支推送与之存在"追踪关系"的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。**J这就是我经常这么干的**
+
+   ```git push origin master```
+
+   如果当前分支与远程分支之间存在追踪关系，则本地分支和远程分支都可以省略。**J这就是我经常这么干的**
+
+   ```git push origin```
+
+   ​
+
+   第三步：
+
+   如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
+
+   > ```
+   > $ git push origin :master
+   > # 等同于
+   > $ git push origin --delete master
+   > ```
+
+   上面命令表示删除`origin`主机的`master`分支。
+
+   ​
+
+13. 多人协作
+
+   1. 首先，可以试图用`git push origin branch-name`推送自己的修改；
+   2. 如果推送失败，则因为远程分支比你的本地更新，需要先用`git pull`试图合并；
+   3. 如果合并有冲突，则解决冲突，并在本地提交；
+   4. 没有冲突或者解决掉冲突后，再用`git push origin branch-name`推送就能成功！
+
+   如果`git pull`提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream branch-name origin/branch-name`。
+
+   ​
+
+14. 参与GitHub项目
 
    第一步：登录GitHub的项目主页，Fork克隆一个仓库：
 
