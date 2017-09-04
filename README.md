@@ -242,5 +242,6 @@
   当输入git branch -a时，一般而言会包括```remotes/origin/HEAD -> origin/master```
   但是当没有这一项时说明丢失了，如下图，可以通过下列命令找回来```git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master```
   ![](picture/missing-HEAD.PNG)
+
   实际上没有任何影响。因为解释为：`remotes\origin\HEAD` indicates the default branch on the remote. The logic is that you can then use `origin` as a shorthand whenever you would otherwise use `origin/master`. E.g. it makes `git log origin/master` equivalent to `git log origin`.
   所以**a remote HEAD ref is only used for cloning, and never required by Git at a later time**. 
