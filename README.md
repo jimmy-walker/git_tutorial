@@ -240,9 +240,16 @@ https://github.com/pcottle/learnGitBranching
   ![](picture/update.PNG)
 
 ## 16. Gitbook公式
-  在gitbook中，对于需要使用公式的markdown文件，需要将其进行替换，从\$替换到\$\$。
+  在gitbook中，对于需要使用公式的markdown文件，~~需要将其进行替换，~~~~从\$替换到\$\$~~。
+
+首先需要安装[nodejs](http://nodejs.cn/download/)，然后安装gitbook：
+
+```
+npm install -g gitbook-cli
+```
 
   然后在文件夹下新建book.json
+
 ```
 {
     "plugins": ["mathjax"],
@@ -269,6 +276,14 @@ https://github.com/pcottle/learnGitBranching
     "latex-codecogs": "styles/latex-codecogs.css"
 }
 ```
+
+最后在根目录运行安装插件
+
+```
+gitbook install ./
+```
+
+
 
 ## 17. 相关问题
 
