@@ -240,7 +240,7 @@ https://github.com/pcottle/learnGitBranching
   ![](picture/update.PNG)
 
 ## 16. Gitbook公式
-  在gitbook中，对于需要使用公式的markdown文件，~~需要将其进行替换，~~~~从\$替换到\$\$~~。
+  在gitbook中，对于需要使用公式的markdown文件，需要将其进行替换，从\$替换到\$\$。
 
 首先需要安装[nodejs](http://nodejs.cn/download/)，然后安装gitbook：
 
