@@ -242,6 +242,8 @@ https://github.com/pcottle/learnGitBranching
 ## 16. Gitbook公式
   在gitbook中，对于需要使用公式的markdown文件，需要将其进行替换，从\$替换到\$\$。
 
+一种方法：
+
 首先需要安装[nodejs](http://nodejs.cn/download/)，然后安装gitbook：
 
 ```
@@ -283,7 +285,7 @@ npm install -g gitbook-cli
 gitbook install ./
 ```
 
-
+另一种方法是：将gitbook中的setting切换到default版本，然后只加入book.json，默认就支持mathjax。
 
 ## 17. 相关问题
 
