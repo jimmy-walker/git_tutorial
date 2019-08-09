@@ -1,6 +1,8 @@
 # Git tutorial
-##-1. 非常好的在线可视化教程沙盒
+##-1. 非常好的在线可视化教程沙盒和无需代码的手动方案
 https://github.com/pcottle/learnGitBranching
+
+<https://guides.github.com/activities/hello-world/> 
 
 ##0. 安装后配置
 
