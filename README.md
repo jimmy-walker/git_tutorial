@@ -1,4 +1,7 @@
 # Git tutorial
+
+[TOC]
+
 ##-1. 非常好的在线可视化教程沙盒和无需代码的手动方案
 https://github.com/pcottle/learnGitBranching
 
@@ -297,3 +300,15 @@ gitbook install ./
 
   实际上没有任何影响。因为解释为：`remotes\origin\HEAD` indicates the default branch on the remote. The logic is that you can then use `origin` as a shorthand whenever you would otherwise use `origin/master`. E.g. it makes `git log origin/master` equivalent to `git log origin`.
   所以**a remote HEAD ref is only used for cloning, and never required by Git at a later time**. 
+
+##18.常用操作
+###推送本地创建的新分支到远端
+
+```shell
+#Create a new branch:
+git checkout -b experiments
+#Edit, add and commit your files.
+#Push your branch to the remote repository:
+git push -u origin experiments #u means set upstream
+```
+
