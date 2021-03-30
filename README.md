@@ -312,3 +312,20 @@ git checkout -b experiments
 git push -u origin experiments #u means set upstream
 ```
 
+##19.代理配置
+
+v2ray的代理配置，添加监听端口即可
+
+```shell
+#查看配置
+git config --global --list
+
+#配置
+git config --global http.proxy 'socks5://127.0.0.1:监听端口'
+git config --global https.proxy 'socks5://127.0.0.1:监听端口'
+
+#删除配置
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
