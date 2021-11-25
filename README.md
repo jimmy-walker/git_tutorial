@@ -329,3 +329,14 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
+##20.删除历史记录
+问题：旧项目提交到git上，历史记录中会包含项目密码等敏感信息，删除这些历史记录，保留最新一次版本。
+
+```
+切换分支：git checkout --orphan latest_branch
+添加到暂存区：git add -A
+提交更改： git commit -am "commit message"
+删除分支： git branch -D master
+重命名分支： git branch -m master
+强制提交到远程仓库：git push -f origin master
+```
