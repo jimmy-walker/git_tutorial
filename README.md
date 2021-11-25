@@ -301,7 +301,7 @@ gitbook install ./
   实际上没有任何影响。因为解释为：`remotes\origin\HEAD` indicates the default branch on the remote. The logic is that you can then use `origin` as a shorthand whenever you would otherwise use `origin/master`. E.g. it makes `git log origin/master` equivalent to `git log origin`.
   所以**a remote HEAD ref is only used for cloning, and never required by Git at a later time**. 
 
-##18.常用操作
+## 18.常用操作
 ###推送本地创建的新分支到远端
 
 ```shell
@@ -312,7 +312,7 @@ git checkout -b experiments
 git push -u origin experiments #u means set upstream
 ```
 
-##19.代理配置
+## 19.代理配置
 
 v2ray的代理配置，添加监听端口即可
 
@@ -329,7 +329,7 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
-##20.删除历史记录
+## 20.删除历史记录
 问题：旧项目提交到git上，历史记录中会包含项目密码等敏感信息，删除这些历史记录，保留最新一次版本。
 
 ```
