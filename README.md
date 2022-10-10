@@ -144,6 +144,12 @@ https://github.com/pcottle/learnGitBranching
   ```git checkout -b dev origin/dev```
 
   ![](picture/checkout-dev-branch.PNG)
+  
+  曾经git clone一个项目后，默认为master分区，需要手动调整到其他分支：`git checkout -b gray_master origin/gray_master`
+
+  ![](picture/checkout-gray-master-branch.PNG)
+
+  后续可以删除master分支，从而将文件夹大小降低：`git branch -d master`
 
 ##11. 分支管理策略
 
